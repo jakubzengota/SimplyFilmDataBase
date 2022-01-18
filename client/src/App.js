@@ -1,23 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from "react" 
 
 function App() {
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [year, setYear] = useState("");
+  const [country, setCountry] = useState("");
+
+  const displayInfo = () => {
+    console.log(name + type + year + country);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="information">
+        <label>Nazwa filmu:</label>
+        <input 
+          type="text" 
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
+        <label>Gatunek:</label>
+        <input type="text" 
+          onChange={(event) => {
+            setType(event.target.value);
+          }}
+        />
+        <label>Rok produkcji:</label>
+        <input type="number"
+          onChange={(event) => {
+            setYear(event.target.value);
+          }}
+        />
+        <label>Kraj wydania:</label>
+        <input type="text"
+          onChange={(event) => {
+            setCountry(event.target.value);
+          }}
+        />
+        <button>Dodaj film</button>
+      </div>
     </div>
   );
 }
