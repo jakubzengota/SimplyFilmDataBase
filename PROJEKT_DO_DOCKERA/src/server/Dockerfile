@@ -1,17 +1,8 @@
-FROM node:14.17.3
-
-COPY package.json /opt/microservices/
-COPY ratings.js /opt/microservices/
-WORKDIR /opt/microservices
-RUN npm install
-
-#hadolint ignore=DL3008
-RUN apt-get update \
-    && apt-get install curl --no-install-recommends -y \
-    && rm -rf /var/lib/apt/lists/*
-
-ARG service_version
-ENV SERVICE_VERSION ${service_version:-v1}
-
-EXPOSE 9080
-CMD ["node", "/opt/microservices/ratings.js", "9080"]
+FROM node:alpine
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+COPY ./ ./
+RUN npm i
+EXPOSE 3001
+CMD ["npm", "run", "start"]
