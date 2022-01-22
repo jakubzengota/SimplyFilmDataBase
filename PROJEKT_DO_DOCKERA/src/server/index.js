@@ -11,6 +11,7 @@ const db = mysql.createConnection({
     host: "localhost",
     password: "password",
     database: "filmsSystem",
+    //company
 });
 
 app.post('/create', (req, res) => {
